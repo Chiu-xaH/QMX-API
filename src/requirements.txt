@@ -1,0 +1,5 @@
+pip install PyExecJS
+pip install requests
+pip install flask
+requests~=2.32.3
+flask~=3.0.3
