@@ -150,10 +150,14 @@ dmypy.json
 
 # pytype static type analyzer
 .pytype/
-
+.idea/
+.vscode/
 # Cython debug symbols
 cython_debug/
 
+tempCodeRunnerFile.c
+tempCodeRunnerFile.exe
+tempCodeRunnerFile.python
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
