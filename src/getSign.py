@@ -1,5 +1,4 @@
 # 得到sign
-import os
 import execjs
 
 from getSong import get_post_raw

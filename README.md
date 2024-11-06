@@ -5,7 +5,19 @@
 
 在src/config.txt添加Cookie，抓包获取(推荐抓QQ音乐客户端)(可选)
 
-运行src/test.py，或者部署到服务器，运行src/server.py
+运行src/test.py，或者部署到服务器
+(测试环境)
+    
+    cd ./src
+    python server.py
+(生产环境)
+    
+    cd ./src
+    gunicorn -w 4 -b 127.0.0.1:5000 server:server
+配置Nginx(略)
+
+
+
 ## API
 ### @GET /search 检索
 #### 请求 query参数
