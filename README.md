@@ -1,19 +1,23 @@
 # QQ音乐接口
 ## 目前仅实现基础功能 正在写...
 ## 食用方法
-按src/requirements.txt安装所需软件包依赖
+按requirements.txt安装所需软件包依赖
+    
+    pip(3) install -r requirements.txt
 
-在src/config.txt添加Cookie，抓包获取(推荐抓QQ音乐客户端)(可选)
+安装Node.js
 
-运行src/test.py，或者部署到服务器
+在config.txt添加Cookie，抓包获取(推荐抓QQ音乐客户端)(可选)
+
+运行test.py，或者部署到服务器
 (测试环境)
     
-    cd ./src
     python server.py
 (生产环境)
     
-    cd ./src
-    gunicorn -w 4 -b 127.0.0.1:5000 server:server
+    gunicorn -w 4 -b 127.0.0.1:5000 server:server --access-logfile ./log/access.log --error-logfile ./log/error.log
+    # 最好指定日志输出，方便分析问题
+    pkill gunicorn(结束)
 配置Nginx(略)
 
 

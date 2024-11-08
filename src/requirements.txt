@@ -1,6 +1,4 @@
-pip install PyExecJS
-pip install requests
-pip install flask
-pip install gunicorn
-requests~=2.32.3
-flask~=3.0.3
+PyExecJS
+gunicorn
+requests
+flask

@@ -1,8 +1,10 @@
 import flask
-from flask import request, jsonify, Response
+from flask import request, jsonify, Response,Blueprint
 
 server = flask.Flask(__name__)
 
+# 创建一个蓝图，并添加前缀 '/qmx/api'
+api = Blueprint('api', __name__, url_prefix='/qmx/api')
 
 # 搜索API @GET(text,num)
 @server.route('/search', methods=['GET','POST'])
@@ -150,6 +152,7 @@ def api_get_list_songs() :
 
 
 server.config['JSON_AS_ASCII'] = False
+server.register_blueprint(api)
 
 if __name__ == "__main__":
     server.run(host='0.0.0.0', port=5000)
