@@ -28,7 +28,7 @@ def get_song_url(songmid):
 
     url = api["get_song_url"].format(sign)
     response = requests.post(url, headers=headers, data=post_raw)
-    if response.status_code == 200:
+    if response.status_code == 200 and "data" in response.text:
         body = response.json()
         song_url = body["req_4"]["data"]["midurlinfo"][0]["purl"]
         # 拼接字符串

@@ -19,9 +19,8 @@
     # 最好指定日志输出，方便分析问题
     pkill gunicorn(结束)
 配置Nginx(略)
-
-
-
+## 注意
+如果不能下载 应该是Cookie过期了，记得更新以下
 ## API
 ### @GET /search 检索
 #### 请求 query参数
