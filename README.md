@@ -20,7 +20,9 @@
     pkill gunicorn(结束)
 配置Nginx(略)
 ## 注意
-如果不能下载 应该是Cookie过期了，记得更新以下
+如果不能获取歌曲URL(getSongURL) 应该是Cookie过期了，记得更新下
+
+getSongURL不能频繁发送请求，否则对方服务器会返回封禁IP，待几小时后自动恢复
 ## API
 ### @GET /search 检索
 #### 请求 query参数
