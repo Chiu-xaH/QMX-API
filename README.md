@@ -76,14 +76,18 @@ id(必选，可从search接口获取)
 ### @GET /getMyLists 获取个人歌单(包括喜欢)
 #### 附带Header Cookie(必选)
 #### 返回 JSON 
-    [ 
-        {
-            "id" : String,
-            "title" : String,
-            "remark" : String,
-            "pictureUrl" : String
-        }
-    ]?
+    {
+        "status" : "success",
+        "list" : [ 
+                    {
+                        "id" : String,
+                        "title" : String,
+                        "remark" : String,
+                        "pictureUrl" : String
+                    }
+                ]?
+    }
+
 ### @GET /getListInfo 获取歌单信息 
 #### query参数
 listId(必选，可从getMyLists接口中获取)、begin(可选，默认为0，代表从第begin+1首开始)、num(可选，默认为30，代表一次请求的数量)
@@ -91,13 +95,17 @@ listId(必选，可从getMyLists接口中获取)、begin(可选，默认为0，�
 如果要翻页，begin需要变为原num+原begin
 #### 附带Header Cookie(可选,如果自己的歌单不对外开放,需要带Cookie以自己的身份访问)
 #### 返回 JSON 
-    [ 
-        {
-                "id": String,
-                "mid": String,
-                "name": String,
-                "album": Stringe,
-                "remark": String,
-                "singer": String
-        }
-    ]?
+    {
+        "status" : "success",
+        "list" : [ 
+                    {
+                        "id": String,
+                        "mid": String,
+                        "name": String,
+                        "album": Stringe,
+                        "remark": String,
+                        "singer": String
+                    }
+                ]?
+    }
+    

@@ -131,7 +131,10 @@ def api_get_my_info() :
 @server.route('/getMyLists', methods=['GET'])
 def api_get_my_list() :
     from getPersonInfo import get_lists
-    return get_lists()
+    return jsonify({
+        "status" : "success",
+        "list" : get_lists()
+    })
 
 
 # 获取歌单内容 @GET(listid)  如果接口是面向对外使用，就需要重写方法 让用户自己提交Cookie，这里为了方便就用一斤发设定在config.txt的Cookie
@@ -148,8 +151,10 @@ def api_get_list_songs() :
 
     from getPersonInfo import get_lists_songs
 
-    return get_lists_songs(int(list_id),int(begin_num),int(num),True)
-
+    return jsonify({
+        "status" : "success",
+        "list" : get_lists_songs(int(list_id),int(begin_num),int(num),True)
+    })
 
 server.config['JSON_AS_ASCII'] = False
 server.register_blueprint(api)
