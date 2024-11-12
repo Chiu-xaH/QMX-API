@@ -153,7 +153,7 @@ def api_get_list_songs() :
 
     return jsonify({
         "status" : "success",
-        "list" : get_lists_songs(int(list_id),int(begin_num),int(num),True)
+        "result" : get_lists_songs(int(list_id),int(begin_num),int(num))
     })
 
 server.config['JSON_AS_ASCII'] = False

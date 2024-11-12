@@ -7,8 +7,8 @@ api = {
     "get_album_picture": "http://imgcache.qq.com/music/photo/album_300/{}/300_albumpic_{}_0.jpg",
     # 获取songmid
     "get_songmid": "https://c.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songid={}&tpl=yqq_song_detail&format=json",
-    # 获取播放链接
-    "get_song_url": "https://u6.y.qq.com/cgi-bin/musics.fcg?_=1730450550757&sign={}",
+    # 获取播放链接req4 获取歌单歌曲及其歌单一些信息re15
+    "get_song_url": "https://u6.y.qq.com/cgi-bin/musics.fcg?sign={}",
     # 用于播放链接前缀
     "play_on": "https://ws6.stream.qqmusic.qq.com/",
     # 获取歌词

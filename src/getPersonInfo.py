@@ -62,52 +62,117 @@ def get_lists():
 
 
 # 插入歌单id到要POST的JSON中
+#def get_post_json(list_id, begin_num=0, num=30):
+ #   data = {
+  #      "comm": {
+   #         "g_tk": 838510852,
+    #        "uin": 3404728391,
+     #       "format": "json",
+      #      "inCharset": "utf-8",
+       ##    "notice": 0,
+  #          "platform": "h5",
+    #        "needNewCode": 1
+   #     },
+   #     "req_0": {
+   #         "module": "music.srfDissInfo.aiDissInfo",
+   #         "method": "uniform_get_Dissinfo",
+   #         "param": {
+   #             "disstid": list_id,
+    #            "enc_host_uin": "",
+    #            "tag": 1,
+    #            "userinfo": 1,
+    #            "song_begin": begin_num,
+    #            "song_num": num
+     #       }
+    #    }
+  #  }
+  #  return data
+
 def get_post_json(list_id, begin_num=0, num=30):
-    data = {
-        "comm": {
-            "g_tk": 838510852,
-            "uin": 3404728391,
-            "format": "json",
-            "inCharset": "utf-8",
-            "outCharset": "utf-8",
-            "notice": 0,
-            "platform": "h5",
-            "needNewCode": 1
-        },
-        "req_0": {
-            "module": "music.srfDissInfo.aiDissInfo",
-            "method": "uniform_get_Dissinfo",
-            "param": {
-                "disstid": list_id,
-                "enc_host_uin": "",
-                "tag": 1,
-                "userinfo": 1,
-                "song_begin": begin_num,
-                "song_num": num
-            }
-        }
-    }
+    data = f'{{"comm":{{"cv":4747474,"ct":24,"format":"json","inCharset":"utf-8","outCharset":"utf-8","notice":0,"platform":"yqq.json","needNewCode":1,"uin":3404728391,"g_tk_new_20200303":1574348945,"g_tk":1574348945}},"req_5":{{"module":"music.srfDissInfo.aiDissInfo","method":"uniform_get_Dissinfo","param":{{"disstid":{list_id},"userinfo":1,"tag":1,"orderlist":1,"song_begin":{begin_num},"song_num":{num},"onlysonglist":0,"enc_host_uin":""}}}}}}'
     return data
 
 
 # 获取歌单 如果自己的歌单不对外公开，使用isOwn=true代表是自己查看 自动带上Cookie
-def get_lists_songs(list_id, begin_num=0, num=30, isOwn=False):
-    url = api["get_lists"]
+# def get_lists_songs(list_id, begin_num=0, num=30, isOwn=False):
+    # url = api["get_lists"]
+    # post_raw = get_post_json(list_id, begin_num, num)
+
+    # if isOwn:
+    #     h = headers
+    # else:
+    #     h = {}
+    # # 添加手机UA 否则收不到数据
+    # h["User-Agent"] = "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) EdgiOS/129.0.2792.84 Version/16.0 Mobile/15E148 Safari/604.1"
+
+    # response = requests.post(url=url, json=post_raw, headers=h)
+
+    # song_list = []
+
+    # if response.status_code == 200 and "req_0" in response.text:
+    #     items = response.json().get("req_0", {}).get("data", {}).get("songlist", [])
+
+    #     for item in items:
+    #         song_id = item.get("id")
+    #         song_mid = item.get("mid")
+    #         song_name = item.get("title")
+    #         song_remark = item.get("subtitle")
+
+    #         # 解析歌手信息
+    #         song_singers_list = item.get("singer", [])
+    #         singer_list = [
+    #             singer.get("title") if isinstance(singer, dict) else None
+    #             for singer in song_singers_list
+    #         ]
+
+    #         # 解析专辑信息
+    #         song_album = item.get("album", {})
+    #         song_album_name = song_album.get("title") if isinstance(song_album, dict) else None
+
+    #         # 构建歌曲信息字典
+    #         res = {
+    #             "id": song_id,
+    #             "mid": song_mid,
+    #             "name": song_name,
+    #             "album": song_album_name,
+    #             "remark": song_remark,
+    #             "singer": singer_list
+    #         }
+    #         song_list.append(res)
+
+    # return song_list
+
+
+# 根据ID获取歌单及其信息
+def get_lists_songs(list_id, begin_num=0, num=30):
+    from getSign import get_sign
+    from api import headers
     post_raw = get_post_json(list_id, begin_num, num)
 
-    if isOwn:
-        h = headers
-    else:
-        h = {}
-    # 添加手机UA 否则收不到数据
-    h["User-Agent"] = "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) EdgiOS/129.0.2792.84 Version/16.0 Mobile/15E148 Safari/604.1"
+    url = api["get_song_url"].format(get_sign(post_raw))
+    #print(url)
+    #print(post_raw)
+    #添加手机UA 否则收不到数据
+    h = headers
+    h["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0"
 
-    response = requests.post(url=url, json=post_raw, headers=h)
+    response = requests.post(url=url, data=post_raw,headers=h)
 
     song_list = []
+    #print(response.text)
+    if response.status_code == 200 and "req_5" in response.text:
+        data = response.json().get("req_5", {}).get("data", {})
+        info = data.get("dirinfo",{})
+        items = data.get("songlist", [])
 
-    if response.status_code == 200 and "req_0" in response.text:
-        items = response.json().get("req_0", {}).get("data", {}).get("songlist", [])
+        title = info.get("title",None)
+        picture_url = info.get("picurl",None)
+        listen_num = info.get("listennum",0)
+        song_num = info.get("songnum",0)
+        host_info = {
+            "name" : info.get("nick",None),
+            "pictureUrl" : info.get("headurl",None)
+        }
 
         for item in items:
             song_id = item.get("id")
@@ -118,31 +183,57 @@ def get_lists_songs(list_id, begin_num=0, num=30, isOwn=False):
             # 解析歌手信息
             song_singers_list = item.get("singer", [])
             singer_list = [
-                singer.get("title") if isinstance(singer, dict) else None
+                {
+                    "title": singer.get("title", None),
+                    "id": singer.get("id",None),
+                    "mid": singer.get("mid", None)
+                }
+                if isinstance(singer, dict) else {"title": None, "id": None, "mid": None}
                 for singer in song_singers_list
             ]
+
 
             # 解析专辑信息
             song_album = item.get("album", {})
             song_album_name = song_album.get("title") if isinstance(song_album, dict) else None
+            song_album_mid = song_album.get("mid") if isinstance(song_album, dict) else None
+            song_album_id = song_album.get("id") if isinstance(song_album, dict) else None
 
             # 构建歌曲信息字典
             res = {
                 "id": song_id,
                 "mid": song_mid,
                 "name": song_name,
-                "album": song_album_name,
+                "album": {
+                    "id" : song_album_id,
+                    "mid" : song_album_mid,
+                    "name" : song_album_name
+                },
                 "remark": song_remark,
                 "singer": singer_list
             }
             song_list.append(res)
 
-    return song_list
+        return {
+            "info" : {
+                "title" : title,
+                "pictureUrl" : picture_url,
+                "listenNum" : listen_num,
+                "songNum" : song_num,
+                "host" : host_info
+            },
+            "list" : song_list
+        }
+    else :
+        return None
+
+# {"comm":{"cv":4747474,"ct":24,"format":"json","inCharset":"utf-8","outCharset":"utf-8","notice":0,"platform":"yqq.json","needNewCode":1,"uin":3404728391,"g_tk_new_20200303":1574348945,"g_tk":1574348945},"req_5":{"module":"music.srfDissInfo.aiDissInfo","method":"uniform_get_Dissinfo","param":{"disstid":{list_id},"userinfo":1,"tag":1,"orderlist":1,"song_begin":{begin},"song_num":{num},"onlysonglist":0,"enc_host_uin":""}}}
+
 
 # 本地测试
 # l = get_person_name()["name"]
 # get_person_info()
 # l = get_lists()
 # print(l)
-#l = get_lists_songs(8409375066,0,30,isOwn=True)
+#l = get_lists_songs(8409375066,0,30)
 #print(l)

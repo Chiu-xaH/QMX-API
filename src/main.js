@@ -338,5 +338,7 @@ function get_sign(data) {
     sign = o(data)
     return sign
 }
+
+console.log(get_sign('{"comm":{"cv":4747474,"ct":24,"format":"json","inCharset":"utf-8","outCharset":"utf-8","notice":0,"platform":"yqq.json","needNewCode":1,"uin":3404728391,"g_tk_new_20200303":1574348945,"g_tk":1574348945},"req_5":{"module":"music.srfDissInfo.aiDissInfo","method":"uniform_get_Dissinfo","param":{"disstid":8698581669,"userinfo":1,"tag":1,"orderlist":1,"song_begin":0,"song_num":10,"onlysonglist":0,"enc_host_uin":""}}}'))
 //暴露接口
 module.exports = { get_sign };

@@ -23,8 +23,9 @@ def get_post_raw(songmid):
 # 得到播放链接
 def get_song_url(songmid):
     from getSign import get_sign
-    sign = get_sign(songmid)
     post_raw = get_post_raw(songmid)
+    sign = get_sign(post_raw)
+    
 
     url = api["get_song_url"].format(sign)
     response = requests.post(url, headers=headers, data=post_raw)
