@@ -1,5 +1,9 @@
 # QQ音乐接口
-## 目前仅实现基础功能 正在写...
+## 仅供个人学习用途，QMX-API利用Python将QQ音乐接口简单封装，可从中获取音乐、歌词、歌单等
+## 目前仅实现一些功能 正在扩展...
+## 客户端实现案例
+[婉婉动听](https://github.com/Chiu-xaH/WanwanDongting-Client)
+![图片1](https://github.com/Chiu-xaH/WanwanDongting-Client/img/preview.jpg)
 ## 食用方法
 按requirements.txt安装所需软件包依赖
     
