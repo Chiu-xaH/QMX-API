@@ -63,7 +63,7 @@ songmid(必选，可从getSongmid接口获取)
 id(必选，可从search接口获取)
 #### 返回 图片img
 
-### @GET /getAlbumPicture 获取专辑封面（方法2）
+### @GET /getAlbumPicture2 获取专辑封面（方法2）
 #### query参数
 albumMid(必选，可从search接口或者歌单中获取)
 #### 返回 图片img
