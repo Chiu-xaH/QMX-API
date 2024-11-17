@@ -119,6 +119,25 @@ def api_get_album_picture() :
         return jsonify({
             "status": "无图片",
         }), 500
+    
+
+# 获取专辑封面2 @GET(id)
+@server.route('/getAlbumPicture2', methods=['GET'])
+def api_get_album_picture_2() :
+    id = request.args.get("albumMid")
+    if not id:
+        return jsonify({
+            "status": "无albumMid",
+        }), 400
+    
+    from getAlubmPicture import get_album_picture_2
+    img = get_album_picture_2(id)
+    if img is not None :
+        return Response(img, content_type='image/jpeg')
+    else :
+        return jsonify({
+            "status": "无图片",
+        }), 500
 
 # 获取个人信息 @GET()  如果接口是面向对外使用，就需要重写方法 让用户自己提交Cookie，这里为了方便就用一斤发设定在config.txt的Cookie
 @server.route('/getMyInfo', methods=['GET'])

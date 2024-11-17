@@ -22,7 +22,7 @@
 ## 注意
 如果不能获取歌曲URL(getSongURL) 应该是Cookie过期了，记得更新下
 
-getSongURL不能频繁发送请求，否则对方服务器会返回封禁IP，待几小时后自动恢复
+getSongURL不能频繁发送同一首歌的请求，否则对方服务器会返回封禁IP，待几小时后自动恢复
 ## API
 ### @GET /search 检索
 #### 请求 query参数
@@ -39,6 +39,7 @@ st(搜索内容，必选)、num(一次请求数量，默认10，可选)
             }
         ]?
     }
+
 ### @GET /getSongmid 
 #### query参数
 songid(必选，可从search接口中获取)
@@ -47,6 +48,7 @@ songid(必选，可从search接口中获取)
         "status": String,
         "songmid": String?
     }
+
 ### @GET&POST /getSongUrl
 #### query参数
 songmid(必选，可从getSongmid接口获取)
@@ -60,6 +62,12 @@ songmid(必选，可从getSongmid接口获取)
 #### query参数
 id(必选，可从search接口获取)
 #### 返回 图片img
+
+### @GET /getAlbumPicture 获取专辑封面（方法2）
+#### query参数
+albumMid(必选，可从search接口或者歌单中获取)
+#### 返回 图片img
+
 ### @GET /getLyrics 获取歌词
 歌词解析，使用split分割时间与歌词，按照时间显示歌词即可
 #### 返回 JSON 
@@ -67,12 +75,14 @@ id(必选，可从search接口获取)
         "status": String,
         "songLyrics": String?
     }
+
 ### @GET /getMyInfo 获取个人信息(如果作为给外界用户使用应废除！)
 #### 返回 JSON 
     { 
         "name": String,
         "pictureUrl": String? (头像图片)
     }
+
 ### @GET /getMyLists 获取个人歌单(包括喜欢)(如果作为给外界用户使用应废除！)
 #### 返回 JSON 
     {

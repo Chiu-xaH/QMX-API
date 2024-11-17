@@ -5,6 +5,8 @@ api = {
     "search": "https://c.y.qq.com/soso/fcgi-bin/music_search_new_platform?format=json&w={}&n={}",
     # 获取专辑封面
     "get_album_picture": "http://imgcache.qq.com/music/photo/album_300/{}/300_albumpic_{}_0.jpg",
+    # 获取专辑封面2
+    "get_album_picture_2" : "https://y.gtimg.cn/music/photo_new/T002R300x300M000{}.jpg",
     # 获取songmid
     "get_songmid": "https://c.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg?songid={}&tpl=yqq_song_detail&format=json",
     # 获取播放链接req4 获取歌单歌曲及其歌单一些信息re15
