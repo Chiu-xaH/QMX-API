@@ -1,0 +1,12 @@
+{
+    "cookie": {
+        "qqmusic_key": "",
+        "qqmusic_uin": ""
+    },
+    "other": {
+        "access_token": "",
+        "qqmusic_guid": "",
+        "refresh_token": "",
+        "openid": ""
+    }
+}

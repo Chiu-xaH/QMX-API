@@ -175,8 +175,6 @@ def api_get_list_songs() :
         "result" : get_lists_songs(int(list_id),int(begin_num),int(num))
     })
 
-server.config['JSON_AS_ASCII'] = False
-server.register_blueprint(api)
 
 if __name__ == "__main__":
     server.run(host='0.0.0.0', port=5000)

@@ -1,5 +1,9 @@
 # QQ音乐接口
-## 目前仅实现基础功能 正在写...
+
+## 声明
+仅供个人学习用途，QMX-API利用Python将QQ音乐接口简单封装，可从中获取音乐、歌词、歌单等，目前仅实现基础功能 可按需求自行扩展
+## 客户端实现案例
+[婉婉动听](https://github.com/Chiu-xaH/WanwanDongting-Client)
 ## 食用方法
 按requirements.txt安装所需软件包依赖
     
@@ -21,7 +25,11 @@
 配置Nginx(略)
 ## 注意
 如果不能获取歌曲URL(getSongURL) 应该是Cookie过期了，记得更新下
-
+### Cookie自动更新配置
+设置定时任务，执行
+```
+python refreshLogin.py
+```
 getSongURL不能频繁发送同一首歌的请求，否则对方服务器会返回封禁IP，待几小时后自动恢复
 ## API
 ### @GET /search 检索
