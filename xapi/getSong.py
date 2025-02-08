@@ -5,7 +5,7 @@ import os
 import requests
 
 from api.apis import api, headers
-from api.xapi.js.getSign import get_sign,generate_request
+from xapi.js.getSign import generate_request, get_sign
 
 
 def get_songmid(songid):
