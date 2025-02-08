@@ -1,10 +1,12 @@
 import requests
 
-from getSong import get_songmid, get_song_url
-from getLyrics import save_lyrics
+from api.getLyrics import save_lyrics
+from api.getSong import get_songmid, get_song_url
+from api.search import search, get_song_info
+
 
 # 本地测试函数 如果部署在服务端，前端只需要用get_song_url拿到URL自己处理
-def save_song(url,song_name):
+def save_song(url, song_name):
     filename = "download/{}.m4a".format(song_name)
 
     response = requests.get(url, stream=True)
@@ -20,7 +22,6 @@ def save_song(url,song_name):
 
 
 # 以下为搜索测试
-from search import search, get_song_info
 
 search_text = str(input("输入搜索内容 "))
 search_result = search(search_text, 15)
@@ -44,7 +45,7 @@ if songmid != None:
     url = get_song_url(songmid)
     if url != None:
         save_song(url, filename)
-        save_lyrics(songmid,filename)
+        save_lyrics(songmid, filename)
     else:
         print("获取URL失败")
 else:

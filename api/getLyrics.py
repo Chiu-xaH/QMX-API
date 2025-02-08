@@ -1,4 +1,4 @@
-from main.apis import api
+from apis import api
 import requests
 
 headers = {

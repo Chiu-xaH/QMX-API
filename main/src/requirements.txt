@@ -1,4 +1,0 @@
-PyExecJS
-gunicorn
-requests
-flask

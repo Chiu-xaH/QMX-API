@@ -14,7 +14,7 @@ api = Blueprint('api', __name__, url_prefix='/qmx/api')
 @server.route('/search', methods=['GET', 'POST'])
 def api_search():
 
-    from main.api.search import search
+    from api.search import search
 
     text = request.args.get("st")
     num = request.args.get("num", 10)
@@ -70,7 +70,7 @@ def api_get_song_url():
             "song_url": None
         }), 400
 
-    from main.api.getSong import get_song_url
+    from api.getSong import get_song_url
     song_url = get_song_url(songmid)
     if song_url is not None:
         return jsonify({
