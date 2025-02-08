@@ -1,7 +1,6 @@
 # 得到sign
 import json
 import os
-
 import execjs
 
 

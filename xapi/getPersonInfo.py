@@ -2,7 +2,7 @@ from api.apis import api,headers
 import requests
 import re
 
-from api.xapi.js.getSign import get_sign
+from xapi.js.getSign import get_sign
 
 
 def get_person_info():
