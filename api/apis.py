@@ -78,9 +78,9 @@ def init_cookie_json(cookie_dict):
         json.dump(file_json, file, ensure_ascii=False, indent=4)
 
 
-init_cookie_json(cookie_dict)
+# init_cookie_json(cookie_dict)
 
-file_json = read_cookie()["cookie"]
+# file_json = read_cookie()["cookie"]
 
 headers = {
     # 如果有绿钻，把Cookie放在这里，可以听VIP歌曲
