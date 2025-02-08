@@ -20,7 +20,7 @@ def get_sign(data):
 # def get_sign(data):
 #     # 获取当前脚本所在目录
 #     current_dir = os.path.dirname(__file__)
-#     js_file_path = os.path.join(current_dir,'main.js')
+#     js_file_path = os.path.join(current_dir,'api.js')
 #
 #     # 读取 JS 代码
 #     with open(js_file_path, 'r', encoding='utf-8') as f:
