@@ -1,8 +1,8 @@
-from apis import api,headers
+from main.apis import api,headers
 import requests
 import re
 
-from api.js.getSign import get_sign
+from main.api.js.getSign import get_sign
 
 
 def get_person_info():
@@ -97,7 +97,7 @@ def get_post_json(list_id, begin_num=0, num=30):
 
 # 获取歌单 如果自己的歌单不对外公开，使用isOwn=true代表是自己查看 自动带上Cookie
 # def get_lists_songs(list_id, begin_num=0, num=30, isOwn=False):
-    # url = api["get_lists"]
+    # url = main["get_lists"]
     # post_raw = get_post_json(list_id, begin_num, num)
 
     # if isOwn:

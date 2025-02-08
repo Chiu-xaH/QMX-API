@@ -3,7 +3,7 @@ import json
 
 import requests
 
-from apis import api,cookie_file_name
+from main.apis import api,cookie_file_name
 
 cookie_json = api.read_cookie()
 

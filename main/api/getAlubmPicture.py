@@ -1,7 +1,7 @@
 # 获取专辑图
 import requests
 
-from apis import api
+from main.apis import api
 
 def get_album_picture(id):
     url = api["get_album_picture"].format(str(int(id) % 100), str(id))

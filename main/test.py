@@ -1,8 +1,8 @@
 import requests
 
-from api.getLyrics import save_lyrics
-from api.getSong import get_songmid, get_song_url
-from api.search import search, get_song_info
+from main.api.getLyrics import save_lyrics
+from main.api.getSong import get_songmid, get_song_url
+from main.api.search import search, get_song_info
 
 
 # 本地测试函数 如果部署在服务端，前端只需要用get_song_url拿到URL自己处理

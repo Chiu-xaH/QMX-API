@@ -1,7 +1,7 @@
 # 搜索 num一次搜索数量
 import requests
 
-from apis import api
+from main.apis import api
 
 
 def search(text, num=10):
