@@ -4,8 +4,8 @@ import os
 
 import requests
 
-from api.api.js.getSign import generate_request
 from api.apis import api, headers
+from api.xapi.js.getSign import get_sign,generate_request
 
 
 def get_songmid(songid):
@@ -25,7 +25,7 @@ def get_songmid(songid):
 def get_song_url(songmid):
     post_raw = generate_request(songmid)
 
-    from api.api.js.getSign import get_sign
+
     sign = get_sign(post_raw)
 
     url = api["get_song_url"].format(sign)
