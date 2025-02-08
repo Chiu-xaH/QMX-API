@@ -23,13 +23,17 @@ api = {
 }
 
 
+#############################################################################################################
 def read(filename):
     with open(filename, 'r', encoding="UTF-8") as file:
         string = file.read()
         return string
 
 
-config_file_name = "./config.txt"
+# 文件名
+config_file_name = "./src/config.ini"
+cookie_file_name = "./src/cookie.json"
+
 content = read(config_file_name)
 match = re.search(r'COOKIE\s*=\s*"([^"]+)"', content)
 cookie = ""
@@ -39,7 +43,6 @@ else:
     print("cookie格式有误")
 
 cookie = str(cookie).replace("\n", "").strip()
-
 
 cookies = cookie.split("; ")
 
@@ -52,7 +55,7 @@ for item in cookies:
 
 
 def read_cookie():
-    with open("cookie.json", "r", encoding="utf-8") as file:
+    with open(cookie_file_name, "r", encoding="utf-8") as file:
         file_json = json.load(file)
     return file_json
 
@@ -61,15 +64,15 @@ def init_cookie_json(cookie_dict):
     file_json = read_cookie()
 
     file_json["cookie"]["qqmusic_key"] = cookie_dict["qqmusic_key"]
-    file_json["cookie"]["qqmusic_uin"] = cookie_dict.get("qqmusic_uin","0")
-    file_json["cookie"]["qqmusic_uin"] = cookie_dict.get("uin","o0").lstrip("o")
+    file_json["cookie"]["qqmusic_uin"] = cookie_dict.get("qqmusic_uin", "0")
+    file_json["cookie"]["qqmusic_uin"] = cookie_dict.get("uin", "o0").lstrip("o")
     file_json["other"]["access_token"] = cookie_dict["psrf_qqaccess_token"]
     file_json["other"]["qqmusic_guid"] = cookie_dict.get("qqmusic_guid")
     file_json["other"]["qqmusic_guid"] = cookie_dict.get("guid")
     file_json["other"]["refresh_token"] = cookie_dict["wxrefresh_token"]
     file_json["other"]["openid"] = cookie_dict["wxopenid"]
 
-    with open("cookie.json", "w", encoding="utf-8") as file:
+    with open(cookie_file_name, "w", encoding="utf-8") as file:
         json.dump(file_json, file, ensure_ascii=False, indent=4)
 
 
@@ -80,5 +83,5 @@ file_json = read_cookie()["cookie"]
 headers = {
     # 如果有绿钻，把Cookie放在这里，可以听VIP歌曲
     # SVIP可以听付费歌曲
-    "Cookie": "qqmusic_key={}; qqmusic_uin={}".format(file_json["qqmusic_key"],file_json["qqmusic_uin"])
+    "Cookie": cookie
 }

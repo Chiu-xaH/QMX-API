@@ -1,7 +1,9 @@
 import json
 
-import api
+
 import requests
+
+from main.apis import api,cookie_file_name
 
 cookie_json = api.read_cookie()
 
@@ -31,7 +33,7 @@ def refresh_login():
         if new_music_key != "" or new_music_key is not None:
             file_json = api.read_cookie()
             file_json["cookie"]["qqmusic_key"] = new_music_key
-            with open("cookie.json", "w", encoding="utf-8") as file:
+            with open(cookie_file_name, "w", encoding="utf-8") as file:
                 json.dump(file_json, file, ensure_ascii=False, indent=4)
             print("写入成功")
         else:

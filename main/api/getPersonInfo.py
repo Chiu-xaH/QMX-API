@@ -1,4 +1,4 @@
-from api import api, headers
+from main.apis import api,headers
 import requests
 import re
 
@@ -146,7 +146,6 @@ def get_post_json(list_id, begin_num=0, num=30):
 # 根据ID获取歌单及其信息
 def get_lists_songs(list_id, begin_num=0, num=30):
     from getSign import get_sign
-    from api import headers
     post_raw = get_post_json(list_id, begin_num, num)
 
     url = api["get_song_url"].format(get_sign(post_raw))

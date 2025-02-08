@@ -2,8 +2,7 @@
  
 
 var main
-require('./ventor');
-require('./envir');
+require('./vector');
 !function(e) {
     function t(t) {
         for (var r, n, d = t[0], c = t[1], i = t[2], l = 0, b = []; l < d.length; l++)
