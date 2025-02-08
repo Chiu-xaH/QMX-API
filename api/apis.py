@@ -1,4 +1,5 @@
 import json
+import os
 import re
 
 api = {
@@ -31,8 +32,9 @@ def read(filename):
 
 
 # 文件名
-config_file_name = "./src/config.ini"
-cookie_file_name = "./src/cookie.json"
+current_dir = os.path.dirname(os.path.abspath(__file__))
+config_file_name = os.path.join(current_dir, "src/config.ini")
+cookie_file_name = os.path.join(current_dir, "src/cookie.json")
 
 content = read(config_file_name)
 match = re.search(r'COOKIE\s*=\s*"([^"]+)"', content)
