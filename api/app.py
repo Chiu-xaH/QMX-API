@@ -4,14 +4,14 @@ import flask
 from flask import request, jsonify, Response, Blueprint
 
 
-server = flask.Flask(__name__)
+app = flask.Flask(__name__)
 
 # 创建一个蓝图，并添加前缀 '/qmx/api'
 api = Blueprint('api', __name__, url_prefix='/qmx/api')
 
 
 # 搜索API @GET(text,num)
-@server.route('/search', methods=['GET', 'POST'])
+@app.route('/search', methods=['GET', 'POST'])
 def api_search():
 
     from api.search import search
@@ -33,7 +33,7 @@ def api_search():
 
 
 # 获取songmidAPI @GET(songmid)
-@server.route('/getSongmid', methods=['GET'])
+@app.route('/getSongmid', methods=['GET'])
 def api_get_songmid():
     from api.getSong import get_songmid
 
@@ -59,7 +59,7 @@ def api_get_songmid():
 
 
 # 获取听歌链接API @GET(songmid)
-@server.route('/getSongUrl', methods=['GET'])
+@app.route('/getSongUrl', methods=['GET'])
 def api_get_song_url():
 
     songmid = request.args.get("songmid")
@@ -85,7 +85,7 @@ def api_get_song_url():
 
 
 # 获取歌词API @GET(songmid)
-@server.route('/getLyrics', methods=['GET'])
+@app.route('/getLyrics', methods=['GET'])
 def api_get_lyrics():
     from api.getLyrics import get_lyrics
     songmid = request.args.get("songmid")
@@ -110,7 +110,7 @@ def api_get_lyrics():
 
 
 # 获取专辑封面 @GET(id)
-@server.route('/getAlbumPicture', methods=['GET'])
+@app.route('/getAlbumPicture', methods=['GET'])
 def api_get_album_picture():
     id = request.args.get("id")
     if not id:
@@ -129,7 +129,7 @@ def api_get_album_picture():
 
 
 # 获取专辑封面2 @GET(id)
-@server.route('/getAlbumPicture2', methods=['GET'])
+@app.route('/getAlbumPicture2', methods=['GET'])
 def api_get_album_picture_2():
     id = request.args.get("albumMid")
     if not id:
@@ -148,14 +148,14 @@ def api_get_album_picture_2():
 
 
 # 获取个人信息 @GET()  如果接口是面向对外使用，就需要重写方法 让用户自己提交Cookie，这里为了方便就用一斤发设定在config.txt的Cookie
-@server.route('/getMyInfo', methods=['GET'])
+@app.route('/getMyInfo', methods=['GET'])
 def api_get_my_info():
     from api.getPersonInfo import get_person_name
     return get_person_name()
 
 
 # 获取个人歌单 @GET()  如果接口是面向对外使用，就需要重写方法 让用户自己提交Cookie，这里为了方便就用一斤发设定在config.txt的Cookie
-@server.route('/getMyLists', methods=['GET'])
+@app.route('/getMyLists', methods=['GET'])
 def api_get_my_list():
     from api.getPersonInfo import get_lists
     return jsonify({
@@ -165,7 +165,7 @@ def api_get_my_list():
 
 
 # 获取歌单内容 @GET(listid)  如果接口是面向对外使用，就需要重写方法 让用户自己提交Cookie，这里为了方便就用一斤发设定在config.txt的Cookie
-@server.route('/getListInfo', methods=['GET'])
+@app.route('/getListInfo', methods=['GET'])
 def api_get_list_songs():
     list_id = request.args.get("listId")
     begin_num = request.args.get("begin", 0)
@@ -185,4 +185,4 @@ def api_get_list_songs():
 
 
 if __name__ == "__main__":
-    server.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000)
