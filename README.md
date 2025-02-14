@@ -34,3 +34,22 @@ python refreshLogin.py
 
 ## [API文档](./main/src/API.md)
 ## [更新日志](./main/src/UPDATE.md)
+
+## 部署到Vercel
+注意：还未修好Node.js问题
+## Docker
+### 打包
+```
+docker build -t qmx-api-image .
+docker save -o qmx-api-X.X.tar qmx-api
+```
+### 运行
+下载Release，载入tar
+```
+docker load -i qmx-api-X.X.tar
+```
+运行
+```
+docker run -d -p 5000:5000 --name qmx-api qmx-api-X.X
+```
+

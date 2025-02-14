@@ -1,7 +1,11 @@
-import os
-
 import flask
 from flask import request, jsonify, Response, Blueprint
+
+import sys
+import os
+
+# 将根目录添加到模块搜索路径
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 
 app = flask.Flask(__name__)

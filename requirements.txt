@@ -1,3 +1,4 @@
 Flask==3.1.0
+gunicorn
 PyExecJS==1.5.1
 Requests==2.32.3
