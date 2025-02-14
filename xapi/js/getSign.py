@@ -4,6 +4,8 @@ import os
 import execjs
 import requests
 
+import api.apis
+
 
 def get_sign(data):
     # 通过调用逆向得到的JS代码生成sign
@@ -33,12 +35,14 @@ def get_sign(data):
 #
 
 
-# def execute_js(js_code):
-#     response = requests.get(f'https://qmx-api.vercel.app/execute-js', params={'code': js_code})
-#     if response.status_code == 200:
-#         return response.json().get('result')
-#     else:
-#         raise Exception(f"Error executing JS: {response.json().get('error')}")
+def get_sign_from_vercel(js):
+    response = requests.get(url=api.apis.api["vercel_js"],params={
+        "data" : js
+    })
+    if response.status_code == 200:
+        return response.json()["sign"]
+    else:
+        raise Exception(f"Error executing JS: {response.json().get('error')}")
 
 
 def generate_request(songmid):
@@ -98,3 +102,5 @@ def get_post_raw(songmid):
 # print(
 #     get_sign(get_post_raw(songmid))
 # )
+
+# print(get_sign_from_vercel("aa"))
