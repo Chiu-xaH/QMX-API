@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/execute", "destination": "/api/main.js" }
+  ]
+}
