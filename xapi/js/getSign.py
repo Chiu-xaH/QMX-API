@@ -2,6 +2,7 @@
 import json
 import os
 import execjs
+import requests
 
 
 def get_sign(data):
@@ -30,6 +31,15 @@ def get_sign(data):
 #     sign = ctx.call("get_sign", data)
 #     return sign
 #
+
+
+# def execute_js(js_code):
+#     response = requests.get(f'https://qmx-api.vercel.app/execute-js', params={'code': js_code})
+#     if response.status_code == 200:
+#         return response.json().get('result')
+#     else:
+#         raise Exception(f"Error executing JS: {response.json().get('error')}")
+
 
 def generate_request(songmid):
     data = {

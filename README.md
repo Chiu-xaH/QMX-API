@@ -32,8 +32,8 @@ python refreshLogin.py
 ```
 前端需注意：getSongURL不能频繁发送同一首歌的请求，否则对方服务器会返回封禁IP，待几小时后自动恢复
 
-## [API文档](./main/src/API.md)
-## [更新日志](./main/src/UPDATE.md)
+## [API文档](./md/API.md)
+## [更新日志](./md/UPDATE.md)
 
 ## 部署到Vercel
 注意：还未修好Node.js问题
