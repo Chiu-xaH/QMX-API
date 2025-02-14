@@ -1,6 +1,5 @@
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/api/app" },
-    { "source": "/execute-js", "destination": "/xapi/js/jsExec.js" }
   ]
 }

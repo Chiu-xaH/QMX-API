@@ -4,8 +4,9 @@ import os
 
 import requests
 
+
 from api.apis import api, headers
-from xapi.js.getSign import generate_request, get_sign
+from xapi.js.getSign import generate_request, get_sign_from_vercel
 
 
 def get_songmid(songid):
@@ -24,9 +25,7 @@ def get_songmid(songid):
 # 得到播放链接
 def get_song_url(songmid):
     post_raw = generate_request(songmid)
-
-
-    sign = get_sign(post_raw)
+    sign = get_sign_from_vercel(post_raw)
 
     url = api["get_song_url"].format(sign)
     # 调试用

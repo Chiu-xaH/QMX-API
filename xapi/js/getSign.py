@@ -6,7 +6,7 @@ import requests
 
 import api.apis
 
-
+# 自行启用
 # def get_sign(data):
 #     # 通过调用逆向得到的JS代码生成sign
 #     current_dir = os.path.dirname(os.path.abspath(__file__))

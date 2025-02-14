@@ -2,7 +2,7 @@ from api.apis import api,headers
 import requests
 import re
 
-from xapi.js.getSign import get_sign
+from xapi.js.getSign import get_sign_from_vercel
 
 
 def get_person_info():
@@ -150,7 +150,7 @@ def get_lists_songs(list_id, begin_num=0, num=30):
 
     post_raw = get_post_json(list_id, begin_num, num)
 
-    url = api["get_song_url"].format(get_sign(post_raw))
+    url = api["get_song_url"].format(get_sign_from_vercel(post_raw))
     #print(url)
     #print(post_raw)
     #添加手机UA 否则收不到数据

@@ -20,7 +20,8 @@ api = {
     # 获取个人歌单
     "get_person_info": "https://c6.y.qq.com/rsc/fcgi-bin/fcg_get_profile_homepage.fcg?format=json&cid=205360838&reqfrom=1",
     # 获取某一个歌单里的歌曲 #刷新登录
-    "get_lists": "https://u.y.qq.com/cgi-bin/musicu.fcg"
+    "get_lists": "https://u.y.qq.com/cgi-bin/musicu.fcg",
+    "vercel_js" : "https://qmx-js-vercel.vercel.app/"
 }
 
 
